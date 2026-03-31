@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capacitación EPEF N°3 – Sustancias Peligrosas | Mantoverde</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f0ede8;color:#1c1c1c}
+  a{color:inherit;text-decoration:none}
+
+  header{background:#CC4E10;color:#fff;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  header h1{font-size:1.05rem;font-weight:600;letter-spacing:.5px}
+  header span{font-size:.8rem;opacity:.85}
+
+  .hero{background:#1c1c1c;color:#fff;padding:3rem 2rem 2.5rem;text-align:center}
+  .hero .badge{display:inline-block;background:rgba(204,78,16,.25);border:1px solid #CC4E10;color:#ffb38a;font-size:.75rem;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:1rem}
+  .hero h2{font-size:2.6rem;font-weight:700;line-height:1.15}
+  .hero h2 span{color:#CC4E10}
+  .hero p{margin-top:.75rem;color:#aaa;font-size:1rem}
+  .hero-meta{margin-top:1.5rem;display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+  .hero-meta div{text-align:center}
+  .hero-meta .num{font-size:2rem;font-weight:700;color:#CC4E10}
+  .hero-meta .lbl{font-size:.75rem;color:#888;margin-top:2px}
+
+  nav.tabs{background:#fff;border-bottom:2px solid #e8e4de;display:flex;overflow-x:auto;position:sticky;top:57px;z-index:99}
+  nav.tabs button{flex-shrink:0;background:none;border:none;padding:.85rem 1.4rem;font-size:.88rem;cursor:pointer;color:#6b6b6b;font-weight:500;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap}
+  nav.tabs button.active{color:#CC4E10;border-bottom-color:#CC4E10}
+  nav.tabs button:hover:not(.active){color:#1c1c1c;background:#faf8f5}
+
+  .section{display:none;max-width:960px;margin:2rem auto;padding:0 1.5rem 4rem}
+  .section.show{display:block}
+
+  .card{background:#fff;border-radius:12px;border:1px solid #e8e4de;margin-bottom:1.25rem;overflow:hidden}
+  .card-header{background:#1c1c1c;color:#fff;padding:.75rem 1.25rem;font-size:.95rem;font-weight:600;display:flex;align-items:center;gap:.75rem}
+  .card-header .dot{width:10px;height:10px;border-radius:50%;background:#CC4E10;flex-shrink:0}
+  .card-body{padding:1.25rem}
+  .card-body p,.card-body li{font-size:.92rem;line-height:1.65;color:#333}
+  .card-body ul{padding-left:1.3rem}
+  .card-body li{margin-bottom:.35rem}
+
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-bottom:1.25rem}
+  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.25rem}
+
+  .info-box{background:#fff;border:1px solid #e8e4de;border-radius:12px;overflow:hidden}
+  .info-box .ib-top{background:#CC4E10;height:5px}
+  .info-box .ib-body{padding:1.1rem}
+  .info-box .ib-icon{width:40px;height:40px;border-radius:10px;background:#faece7;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:.75rem}
+  .info-box h4{font-size:.92rem;font-weight:600;color:#1c1c1c;margin-bottom:.5rem}
+  .info-box p{font-size:.85rem;color:#6b6b6b;line-height:1.55}
+
+  .rule-row{display:flex;align-items:stretch;margin-bottom:.5rem;border-radius:8px;overflow:hidden;border:1px solid #e8e4de}
+  .rule-row .rr-label{background:#CC4E10;color:#fff;font-size:.82rem;font-weight:600;padding:.65rem .9rem;min-width:160px;display:flex;align-items:center}
+  .rule-row .rr-val{background:#fff;padding:.65rem .9rem;font-size:.85rem;color:#333;display:flex;align-items:center;flex:1;flex-wrap:wrap;gap:4px}
+
+  .alert{background:#fff3ed;border-left:4px solid #CC4E10;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:1rem;font-size:.9rem;color:#7a2800}
+  .danger{background:#fcebeb;border-left:4px solid #c0392b;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;color:#7b1f1f}
+  .ok-box{background:#eaf3de;border-left:4px solid #1e7b34;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;color:#1e4a24}
+  .info-bar{background:#e6f1fb;border-left:4px solid #185fa5;border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin-bottom:.75rem;font-size:.88rem;color:#0c447c}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+  @media(max-width:640px){.two-col{grid-template-columns:1fr}}
+
+  .tag{display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:20px;margin:2px}
+  .tag.red{background:#fcebeb;color:#a32d2d}
+  .tag.green{background:#eaf3de;color:#1e7b34}
+  .tag.blue{background:#e6f1fb;color:#185fa5}
+  .tag.amber{background:#faeeda;color:#854f0b}
+  .tag.dark{background:#e8e4de;color:#333}
+  .tag.orange{background:#faece7;color:#7a2800}
+
+  /* Jerarquía de controles */
+  .jerarquia{margin:1rem 0}
+  .jer-item{display:flex;align-items:center;gap:12px;margin-bottom:6px;border-radius:8px;padding:.6rem 1rem;font-size:.88rem;font-weight:600}
+  .jer-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;color:#fff}
+  .jer-sub{font-size:.78rem;font-weight:400;color:#666;margin-top:2px}
+
+  /* QUIZ */
+  .q-num{font-size:.8rem;color:#aaa;margin-bottom:.35rem}
+  .q-text{font-size:1rem;font-weight:600;color:#1c1c1c;margin-bottom:1rem}
+  .opt{background:#f5f3ef;border:1px solid #e8e4de;border-radius:8px;padding:.75rem 1rem;margin-bottom:.6rem;cursor:pointer;font-size:.9rem;color:#1c1c1c;transition:all .12s}
+  .opt:hover{background:#faece7;border-color:#CC4E10}
+  .opt.correct{background:#eaf3de;border-color:#1e7b34;color:#1e4a24}
+  .opt.wrong{background:#fcebeb;border-color:#c0392b;color:#7b1f1f}
+  .feedback{font-size:.85rem;margin-top:.75rem;padding:.75rem 1rem;border-radius:8px;display:none}
+  .feedback.ok-f{background:#eaf3de;color:#1e4a24}
+  .feedback.err-f{background:#fcebeb;color:#7b1f1f}
+  .progress-wrap{background:#e8e4de;border-radius:4px;height:5px;margin-bottom:1.25rem;overflow:hidden}
+  .progress-fill{height:100%;background:#CC4E10;transition:width .3s;border-radius:4px}
+  #next-btn{display:none;background:#CC4E10;color:#fff;border:none;border-radius:8px;padding:.6rem 1.4rem;font-size:.9rem;cursor:pointer;margin-top:.75rem}
+  #next-btn:hover{background:#a83d0c}
+  .score-wrap{text-align:center;padding:2rem}
+  .score-wrap .score-icon{font-size:3rem;margin-bottom:.75rem}
+  .score-wrap h3{font-size:1.5rem;font-weight:700}
+  .score-wrap p{color:#6b6b6b;margin-top:.5rem}
+  #restart-btn{background:#CC4E10;color:#fff;border:none;border-radius:8px;padding:.65rem 1.6rem;font-size:.9rem;cursor:pointer;margin-top:.75rem}
+
+  .name-form{margin-bottom:1.5rem}
+  .name-form label{display:block;font-size:.85rem;color:#6b6b6b;margin-bottom:.4rem;font-weight:500}
+  .name-form input{width:100%;max-width:400px;padding:.65rem 1rem;border:1.5px solid #e8e4de;border-radius:8px;font-size:.95rem;font-family:'Segoe UI',Arial,sans-serif;outline:none;transition:border .15s}
+  .name-form input:focus{border-color:#CC4E10}
+
+  #cert-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:999;align-items:center;justify-content:center;padding:1rem}
+  #cert-overlay.show{display:flex}
+  #cert-box{background:#fff;border-radius:16px;max-width:680px;width:100%;padding:0;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  .cert-top{background:#1c1c1c;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between}
+  .cert-top span{color:#CC4E10;font-weight:700;letter-spacing:1.5px;font-size:.8rem}
+  .cert-top button{background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer;line-height:1}
+  .cert-body{padding:2rem 2.5rem;text-align:center}
+  .cert-seal{width:80px;height:80px;border-radius:50%;background:#1c1c1c;border:4px solid #CC4E10;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.25rem}
+  .cert-body h2{font-size:1.0rem;color:#6b6b6b;font-weight:400;letter-spacing:2px;text-transform:uppercase;margin-bottom:.35rem}
+  .cert-body .cert-name{font-size:1.5rem;color:#CC4E10;font-weight:700;border-bottom:2px solid #CC4E10;display:inline-block;padding-bottom:4px;margin:1rem 0 .5rem}
+  .cert-body .cert-course{font-size:.95rem;color:#444;margin-bottom:.25rem}
+  .cert-body .cert-std{font-size:.82rem;color:#999;margin-bottom:1.25rem}
+  .cert-divider{border:none;border-top:1px dashed #e8e4de;margin:1.25rem 0}
+  .cert-meta{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+  .cert-meta div{text-align:center}
+  .cert-meta .cm-val{font-size:1.1rem;font-weight:700;color:#1c1c1c}
+  .cert-meta .cm-lbl{font-size:.75rem;color:#999;margin-top:2px}
+  .cert-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+  .cert-actions button{padding:.6rem 1.4rem;border-radius:8px;font-size:.88rem;cursor:pointer;font-family:'Segoe UI',Arial,sans-serif}
+  .btn-print{background:#CC4E10;color:#fff;border:none}
+  .btn-print:hover{background:#a83d0c}
+  .btn-close{background:#fff;color:#1c1c1c;border:1.5px solid #e8e4de}
+  .btn-close:hover{background:#f5f3ef}
+
+  @media print{
+    body > *:not(#cert-overlay){display:none!important}
+    #cert-overlay{display:flex!important;position:static;background:none;padding:0}
+    #cert-box{box-shadow:none;border-radius:0;max-width:100%}
+    .cert-top button,.cert-actions{display:none!important}
+    .cert-top{background:#1c1c1c!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .cert-seal{background:#1c1c1c!important;border-color:#CC4E10!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+
+  footer{background:#1c1c1c;color:#888;text-align:center;padding:1.5rem;font-size:.8rem}
+  footer strong{color:#CC4E10}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⛏ Capstone Copper · Mantoverde — EPEF N°3 Sustancias Peligrosas</h1>
+  <span>CC.MV.GSSO.E003 · v0 · 01/12/2023</span>
+</header>
+
+<div class="hero">
+  <div class="badge">ESTÁNDAR PARA LA ELIMINACIÓN DE FATALIDADES</div>
+  <h2>Manejo de Sustancias <span>Peligrosas</span></h2>
+  <p>Capacitación simplificada para todo el personal y contratistas de Mantoverde</p>
+  <div class="hero-meta">
+    <div><div class="num">9</div><div class="lbl">clases de peligro ONU</div></div>
+    <div><div class="num">16</div><div class="lbl">secciones mínimas en HDS</div></div>
+    <div><div class="num">5</div><div class="lbl">niveles de jerarquía de control</div></div>
+    <div><div class="num">100%</div><div class="lbl">obligatorio para todos</div></div>
+  </div>
+</div>
+
+<nav class="tabs" id="tabs">
+  <button class="active" onclick="show('intro')">¿De qué trata?</button>
+  <button onclick="show('identificacion')">Identificación</button>
+  <button onclick="show('controles')">Controles y gestión</button>
+  <button onclick="show('personal')">El personal</button>
+  <button onclick="show('quiz')">Verifica lo aprendido</button>
+</nav>
+
+<!-- ══════════════ INTRO ══════════════ -->
+<div class="section show" id="s-intro">
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>¿A qué aplica este estándar?</div>
+    <div class="card-body">
+      <p style="margin-bottom:.75rem">Aplica a <strong>materiales peligrosos en instalaciones permanentes</strong> que en cualquier forma — sólido, líquido o gas — tienen potencial de causar daño a personas, ambiente o comunidad. Cubre almacenamiento, manejo, producción, transporte, reciclado y descarte.</p>
+      <div class="danger">⛔ Este estándar <strong>NO cubre explosivos ni materiales radiactivos</strong>. Para esos materiales existen procedimientos específicos separados.</div>
+      <div class="info-bar">ℹ️ Cuando las instalaciones o procesos son temporales, se debe hacer un <strong>análisis de riesgo</strong> para determinar qué nivel de cumplimiento aplica.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Términos clave que debes conocer</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">☣️</div>
+            <h4>SUSPEL — Sustancia Peligrosa</h4>
+            <p>Aquella que por su naturaleza puede producir daños momentáneos o permanentes a la salud humana, animal, vegetal o a instalaciones. Clasificación según NCh 382 Of. 2021.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">📄</div>
+            <h4>HDS — Hoja de Seguridad</h4>
+            <p>Documento con información sobre efectos peligrosos para la salud y procedimientos de trabajo seguro. Debe tener <strong>mínimo 16 secciones</strong> según NCh 2245 Of. 2021.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🚛</div>
+            <h4>HDST — HDS para Transporte</h4>
+            <p>Documento obligatorio para el transporte de SUSPEL según D.S. 298 de 1994. Informa sobre seguridad, salud, ambiente y acciones de emergencia durante el traslado.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🔢</div>
+            <h4>Número ONU (NU)</h4>
+            <p>Número de 4 dígitos asignado a cada SUSPEL por las Naciones Unidas. En transporte se muestra en <strong>placas con fondo naranja y números negros</strong>.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🔬</div>
+            <h4>HAZOP / HAZID</h4>
+            <p><strong>HAZOP:</strong> Estudio sistemático de peligros y operabilidad de instalaciones complejas.<br><strong>HAZID:</strong> Identificación de peligros de alto nivel para todo el proceso.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🏆</div>
+            <h4>Champion SUSPEL</h4>
+            <p>Persona competente designada como responsable de la gestión de sustancias peligrosas en la operación. Toda incorporación o descarte de SUSPEL debe ser aprobada por él/ella.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ IDENTIFICACIÓN ══════════════ -->
+<div class="section" id="s-identificacion">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Rótulos y sistemas de identificación obligatorios</div>
+    <div class="card-body">
+      <div class="rule-row">
+        <div class="rr-label">Rótulos ONU<br><span style="font-weight:400;font-size:.75rem">NCh 2190</span></div>
+        <div class="rr-val">Identifican el tipo de riesgo de la sustancia. <span class="tag orange">Obligatorio en transporte</span> <span class="tag orange">Obligatorio en almacenamiento</span> <span class="tag orange">Obligatorio en embalajes/envases</span> <span class="tag orange">Manejo de residuos peligrosos</span></div>
+      </div>
+      <div class="rule-row">
+        <div class="rr-label">Rombo NFPA<br><span style="font-weight:400;font-size:.75rem">NCh 1411/4</span></div>
+        <div class="rr-val">Indica 3 categorías: <span class="tag blue">Azul = Salud</span> <span class="tag red">Rojo = Inflamabilidad</span> <span class="tag amber">Amarillo = Reactividad</span> <span class="tag dark">Blanco = Riesgo especial</span> — <strong>Obligatorio en almacenamiento de SUSPEL</strong></div>
+      </div>
+      <div class="rule-row">
+        <div class="rr-label">Número ONU<br><span style="font-weight:400;font-size:.75rem">NCh 382</span></div>
+        <div class="rr-val">4 dígitos que acompañan al rótulo. En transporte se fija como <strong>placa naranja con números negros</strong>.</div>
+      </div>
+      <div class="rule-row">
+        <div class="rr-label">Tuberías</div>
+        <div class="rr-val">Las tuberías con SUSPEL deben estar <strong>marcadas claramente</strong> indicando contenido y <strong>dirección del flujo</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Las 9 clases de peligro ONU — las más comunes en minería</div>
+    <div class="card-body">
+      <div class="grid-3">
+        <div style="background:#faece7;border-radius:8px;padding:.75rem;text-align:center"><div style="font-size:1.5rem">💥</div><strong style="font-size:.88rem">Clase 1</strong><div style="font-size:.78rem;color:#7a2800">Explosivos</div></div>
+        <div style="background:#faece7;border-radius:8px;padding:.75rem;text-align:center"><div style="font-size:1.5rem">🔥</div><strong style="font-size:.88rem">Clase 3</strong><div style="font-size:.78rem;color:#7a2800">Líquidos inflamables</div></div>
+        <div style="background:#faece7;border-radius:8px;padding:.75rem;text-align:center"><div style="font-size:1.5rem">☠️</div><strong style="font-size:.88rem">Clase 6</strong><div style="font-size:.78rem;color:#7a2800">Tóxicos e infecciosos</div></div>
+        <div style="background:#faece7;border-radius:8px;padding:.75rem;text-align:center"><div style="font-size:1.5rem">☢️</div><strong style="font-size:.88rem">Clase 7</strong><div style="font-size:.78rem;color:#7a2800">Materiales radiactivos</div></div>
+        <div style="background:#faece7;border-radius:8px;padding:.75rem;text-align:center"><div style="font-size:1.5rem">⚗️</div><strong style="font-size:.88rem">Clase 8</strong><div style="font-size:.78rem;color:#7a2800">Corrosivos (ácidos, cal)</div></div>
+        <div style="background:#faece7;border-radius:8px;padding:.75rem;text-align:center"><div style="font-size:1.5rem">⚠️</div><strong style="font-size:.88rem">Clase 9</strong><div style="font-size:.78rem;color:#7a2800">Misceláneos peligrosos</div></div>
+      </div>
+      <div class="info-bar" style="margin-top:.75rem">ℹ️ Los explosivos (Clase 1) y radiactivos (Clase 7) están <strong>excluidos de este estándar</strong> — tienen procedimientos propios.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Registro de inventario de SUSPEL — lo que debe incluir</div>
+    <div class="card-body">
+      <p style="margin-bottom:.75rem;font-size:.9rem">Cada empresa debe mantener un <strong>registro completo</strong> de todas las SUSPEL que usa en faena (Anexo 2 del estándar):</p>
+      <div style="display:flex;flex-wrap:wrap;gap:5px">
+        <span class="tag blue">Nombre de la sustancia</span>
+        <span class="tag blue">Tipo de envase</span>
+        <span class="tag blue">Número ONU</span>
+        <span class="tag blue">Número CAS</span>
+        <span class="tag blue">Información de peligrosidad</span>
+        <span class="tag blue">Área de uso</span>
+        <span class="tag blue">HDS disponible</span>
+        <span class="tag blue">HDST disponible</span>
+        <span class="tag blue">Stock permanente/temporal</span>
+        <span class="tag blue">Ubicación de almacenamiento</span>
+        <span class="tag blue">Cantidad (kg/lt)</span>
+        <span class="tag blue">Generación de residuos (Sí/No)</span>
+        <span class="tag blue">Estado del residuo generado</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONTROLES ══════════════ -->
+<div class="section" id="s-controles">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Jerarquía de controles — del más al menos efectivo</div>
+    <div class="card-body">
+      <p style="margin-bottom:1rem;font-size:.9rem">Ante cualquier riesgo con SUSPEL, se deben aplicar los controles en este orden. El nivel 1 es siempre la primera opción:</p>
+      <div class="jerarquia">
+        <div class="jer-item" style="background:#eaf3de">
+          <div class="jer-num" style="background:#1e7b34">1</div>
+          <div><strong style="color:#1e4a24">Eliminación</strong> — Mayor efectividad<div class="jer-sub">Eliminar físicamente el peligro del lugar de trabajo.</div></div>
+        </div>
+        <div class="jer-item" style="background:#e6f1fb">
+          <div class="jer-num" style="background:#185fa5">2</div>
+          <div><strong style="color:#0c447c">Sustitución</strong><div class="jer-sub">Reemplazar la SUSPEL por una sustancia menos peligrosa.</div></div>
+        </div>
+        <div class="jer-item" style="background:#faeeda">
+          <div class="jer-num" style="background:#854f0b">3</div>
+          <div><strong style="color:#633806">Controles de Ingeniería</strong><div class="jer-sub">Rediseñar equipos o procesos. Aislar el peligro con protecciones físicas.</div></div>
+        </div>
+        <div class="jer-item" style="background:#faece7">
+          <div class="jer-num" style="background:#CC4E10">4</div>
+          <div><strong style="color:#7a2800">Controles Administrativos</strong><div class="jer-sub">Entrenamiento, procedimientos, permisos de trabajo, señalización.</div></div>
+        </div>
+        <div class="jer-item" style="background:#fcebeb">
+          <div class="jer-num" style="background:#c0392b">5</div>
+          <div><strong style="color:#7b1f1f">EPP — Equipo de Protección Personal</strong> — Menor efectividad<div class="jer-sub">Última línea de defensa. Solo cuando los controles anteriores no son aplicables.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Instalaciones y plantas — requisitos clave</div>
+    <div class="card-body">
+      <div class="rule-row"><div class="rr-label">Diseño y evaluación</div><div class="rr-val">Toda instalación permanente o temporal que maneje SUSPEL debe ser evaluada con HAZOP o HAZID. Los planos deben actualizarse con los resultados.</div></div>
+      <div class="rule-row"><div class="rr-label">Identificación recipientes</div><div class="rr-val">Todos los recipientes, contenedores y tanques deben estar identificados con las normas chilenas. La HDS debe estar disponible en el punto de uso y almacenamiento.</div></div>
+      <div class="rule-row"><div class="rr-label">Control de acceso</div><div class="rr-val">Deben existir sistemas y dispositivos de seguridad para controlar el acceso a áreas donde se almacenen o usen SUSPEL.</div></div>
+      <div class="rule-row"><div class="rr-label">Ventilación y drenaje</div><div class="rr-val">Deben existir dispositivos de ventilación, drenado y contención para operaciones normales y emergencias, definidos por evaluación de riesgo.</div></div>
+      <div class="rule-row"><div class="rr-label">Controles automáticos</div><div class="rr-val">Las instalaciones de SUSPEL deben tener controles automáticos de planta con <strong>sistemas de doble seguridad</strong> para emergencias.</div></div>
+      <div class="rule-row"><div class="rr-label">Detectores de gas</div><div class="rr-val">Se deben considerar detectores fijos y dispositivos de detección personal como medidas de reducción de riesgo.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Plan de respuesta de emergencia — qué debe incluir</div>
+    <div class="card-body">
+      <div class="alert"><strong>Toda instalación con riesgo importante por SUSPEL debe tener un Plan de Respuesta de Emergencia.</strong> Este plan debe revisarse, verificarse y documentarse <strong>anualmente</strong>.</div>
+      <div class="two-col">
+        <ul>
+          <li>Procedimientos de respuesta adecuados para cada SUSPEL</li>
+          <li>Equipos de emergencia en el lugar: oxígeno, antídotos, duchas</li>
+          <li>Medios de escape claramente señalizados</li>
+          <li>Válvulas de corte marcadas claramente</li>
+          <li>Brigadas de respuesta según el nivel de riesgo</li>
+        </ul>
+        <ul>
+          <li>Refugios y puntos de reunión seguros</li>
+          <li>Equipos para contención de derrames, incendios, quemaduras</li>
+          <li>Coordinación con servicios externos (ambulancia, hospital, bomberos)</li>
+          <li>Procedimiento de recuperación y descarte del material</li>
+          <li>Minimización del impacto y limpieza de derrames</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Procedimientos críticos</div>
+    <div class="card-body">
+      <div class="rule-row"><div class="rr-label">Permiso de trabajo</div><div class="rr-val">Requerido para trabajos con SUSPEL según EPEF N°5 (Aislamiento y Bloqueo). Garantiza descontaminación, EPP adecuado y precauciones especiales.</div></div>
+      <div class="rule-row"><div class="rr-label">Ingreso de nueva SUSPEL</div><div class="rr-val">Debe ser aprobado por el <strong>Champion SUSPEL</strong> de Mantoverde. Completar formulario Anexo 1 del estándar antes de ingresar cualquier nueva sustancia.</div></div>
+      <div class="rule-row"><div class="rr-label">Sustancias incompatibles</div><div class="rr-val">Debe existir un sistema para controlar operaciones simultáneas y evitar la <strong>mezcla de sustancias incompatibles</strong>.</div></div>
+      <div class="rule-row"><div class="rr-label">Transporte en ruta</div><div class="rr-val">Los vehículos de transporte de SUSPEL deben llevar <strong>toda la documentación exigida por la ley chilena</strong> (HDST, D.S. 298/1994).</div></div>
+      <div class="rule-row"><div class="rr-label">Administración del cambio</div><div class="rr-val">Cualquier cambio en equipos o procesos que manejen SUSPEL debe someterse al proceso de <strong>Administración del Cambio</strong> de Mantoverde.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PERSONAL ══════════════ -->
+<div class="section" id="s-personal">
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Champion de Sustancias Peligrosas</div>
+    <div class="card-body">
+      <div class="alert"><strong>Debe haber una persona designada como Champion SUSPEL</strong> en toda operación donde las sustancias peligrosas sean procesadas, almacenadas o manipuladas.</div>
+      <p style="margin-bottom:.75rem">Sus responsabilidades incluyen:</p>
+      <ul>
+        <li>Aprobar el ingreso y descarte de toda SUSPEL a la faena</li>
+        <li>Evaluar propiedades peligrosas de los materiales</li>
+        <li>Monitorear el consumo y la gestión del inventario</li>
+        <li>Proveer servicio de asesoría a abastecimiento, bodegas, operaciones y personal de SSA</li>
+        <li>Identificar dónde obtener asesoría experta adicional cuando sea necesario</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Entrenamiento — obligaciones del personal</div>
+    <div class="card-body">
+      <div class="grid-2">
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">📚</div>
+            <h4>Todo el personal</h4>
+            <p>Debe ser entrenado para entender los efectos peligrosos para la salud de los materiales que maneja y sus condiciones de trabajo.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🔧</div>
+            <h4>Personal operativo y mantenimiento</h4>
+            <p>Entrenamiento basado en competencias. Se recomienda usar la pericia del proveedor, con <strong>cursos anuales de revisión</strong>.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">🚨</div>
+            <h4>Brigadas de emergencia</h4>
+            <p>Entrenamiento específico para roles de respuesta a emergencias con SUSPEL. Los simulacros deben realizarse periódicamente.</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="ib-top"></div>
+          <div class="ib-body">
+            <div class="ib-icon">👁️</div>
+            <h4>Observaciones conductuales</h4>
+            <p>Deben incluir la operación de equipos y sistemas que manejen SUSPEL. Las necesidades detectadas deben incorporarse al plan de entrenamiento.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ok-box" style="margin-top:.5rem">✅ Las lecciones aprendidas de los simulacros deben incorporarse en el plan de respuesta a emergencias.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Monitoreo de exposición del personal</div>
+    <div class="card-body">
+      <p>Debe existir un sistema para <strong>monitorear la exposición de corto y largo plazo</strong> del personal a materiales peligrosos con potencial de daño inmediato o diferido. Este sistema debe considerar el potencial de fatalidades.</p>
+      <div class="alert" style="margin-top:.75rem"><strong>La HDS debe estar disponible en el punto de uso y almacenamiento</strong> para todo el personal involucrado, incluyendo primeros auxilios, emergencias y personal médico.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CERTIFICADO ══════════════ -->
+<div id="cert-overlay">
+  <div id="cert-box">
+    <div class="cert-top">
+      <span>CAPSTONE COPPER · MANTOVERDE</span>
+      <button onclick="closeCert()" title="Cerrar">✕</button>
+    </div>
+    <div class="cert-body">
+      <div class="cert-seal">🏆</div>
+      <h2>Certificado de aprobación</h2>
+      <p style="font-size:.82rem;color:#aaa;margin-bottom:.5rem">Este certificado acredita que</p>
+      <div class="cert-name" id="cert-name-display">—</div>
+      <div class="cert-course">ha completado exitosamente la capacitación</div>
+      <div style="font-size:1.05rem;font-weight:700;color:#1c1c1c;margin:.3rem 0">EPEF N°3 — Manejo de Sustancias Peligrosas</div>
+      <div class="cert-std">Estándar CC.MV.GSSO.E003 · Capstone Copper / Mantoverde</div>
+      <hr class="cert-divider">
+      <div class="cert-meta">
+        <div><div class="cm-val" id="cert-score">8/8</div><div class="cm-lbl">Nota obtenida</div></div>
+        <div><div class="cm-val" style="color:#1e7b34">100%</div><div class="cm-lbl">Porcentaje</div></div>
+        <div><div class="cm-val" id="cert-date">—</div><div class="cm-lbl">Fecha</div></div>
+      </div>
+      <div style="font-size:.78rem;color:#bbb;margin-bottom:1.25rem">Gerencia Sulfuros — Mantoverde S.A.</div>
+      <div class="cert-actions">
+        <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+        <button class="btn-close" onclick="closeCert()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div class="section" id="s-quiz">
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Antes de comenzar, ingresa tu nombre</div>
+    <div class="card-body">
+      <div class="name-form">
+        <label for="user-name">Nombre completo</label>
+        <input type="text" id="user-name" placeholder="Ej: Juan Pérez González" maxlength="80">
+      </div>
+      <p style="font-size:.82rem;color:#999">Necesario para generar tu certificado si apruebas con 100%.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><div class="dot"></div>Verifica lo que aprendiste — debes responder todo correcto para aprobar</div>
+    <div class="card-body" id="quiz-wrap">
+      <div class="progress-wrap"><div class="progress-fill" id="prog" style="width:0%"></div></div>
+      <div id="q-body"></div>
+    </div>
+    <div class="card-body score-wrap" id="score-wrap" style="display:none">
+      <div class="score-icon" id="score-icon">📖</div>
+      <h3 id="score-title"></h3>
+      <p id="score-sub"></p>
+      <div id="cert-btn-wrap" style="display:none;margin-top:1rem">
+        <button onclick="showCert()" style="background:#1e7b34;color:#fff;border:none;border-radius:8px;padding:.75rem 2rem;font-size:1rem;cursor:pointer;font-weight:600">🏆 Ver mi certificado</button>
+      </div>
+      <button id="restart-btn" onclick="restartQuiz()">Intentar de nuevo</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><strong>EPEF N°3 — Manejo de Sustancias Peligrosas</strong> · Capstone Copper / Mantoverde · CC.MV.GSSO.E003 · Versión 0 · Vigente desde 01/12/2023</p>
+  <p style="margin-top:.5rem">Elaborado y aprobado por la Gerencia de Seguridad y Salud Ocupacional – Mantoverde S.A.</p>
+</footer>
+
+<script>
+const questions = [
+  {
+    q:"¿Qué documento de seguridad es OBLIGATORIO llevar en los vehículos que transportan sustancias peligrosas?",
+    opts:["Solo la HDS del producto","La HDST (Hoja de Seguridad para el Transporte) según D.S. 298/1994","El número ONU del producto impreso","El formulario de ingreso a faena"],
+    c:1,
+    fb:"Correcto. La HDST es obligatoria para el transporte de SUSPEL según el D.S. 298 de 1994. Debe estar estandarizada conforme a la NCh 2245 Of. 2021."
+  },
+  {
+    q:"¿Cuántas secciones mínimas debe tener una Hoja de Seguridad (HDS)?",
+    opts:["8 secciones","12 secciones","16 secciones","20 secciones"],
+    c:2,
+    fb:"Correcto. Cada HDS debe contener como mínimo 16 secciones, tal como lo indica la norma chilena NCh 2245 Of. 2021."
+  },
+  {
+    q:"¿Cuál es el primer nivel de la jerarquía de controles — el más efectivo?",
+    opts:["Equipo de Protección Personal (EPP)","Controles de Ingeniería","Eliminación del peligro","Controles Administrativos"],
+    c:2,
+    fb:"Correcto. La Eliminación es el nivel 1 y el más efectivo. Significa eliminar físicamente el peligro. El EPP es siempre el último recurso."
+  },
+  {
+    q:"¿Quién debe aprobar el ingreso de una nueva sustancia peligrosa a la faena?",
+    opts:["El supervisor directo del área","El jefe de turno","El Champion de Sustancias Peligrosas de Mantoverde","Cualquier persona del área de seguridad"],
+    c:2,
+    fb:"Correcto. Toda incorporación (y descarte) de materiales peligrosos debe ser aprobada por el Champion de Sustancias Peligrosas de Mantoverde, usando el formulario del Anexo 1."
+  },
+  {
+    q:"¿Para qué se usa el rombo NFPA (NCh 1411/4)?",
+    opts:["Para identificar el número ONU en transporte","Para identificar riesgos en almacenamiento: salud, inflamabilidad y reactividad","Para indicar el peso del envase","Para marcar las tuberías con SUSPEL"],
+    c:1,
+    fb:"Correcto. El rombo NFPA es obligatorio para el almacenamiento de SUSPEL. Sus secciones azul (salud), roja (inflamabilidad), amarilla (reactividad) y blanca (riesgo especial) permiten identificar los riesgos rápidamente."
+  },
+  {
+    q:"¿Con qué frecuencia deben revisarse y documentarse los planes de respuesta de emergencia para SUSPEL?",
+    opts:["Cada 5 años","Cuando ocurre un incidente","Anualmente","Solo en caso de cambio de proceso"],
+    c:2,
+    fb:"Correcto. Los planes de respuesta de emergencia para incidentes con materiales peligrosos deben ser revisados, verificados y documentados anualmente."
+  },
+  {
+    q:"¿Qué sistema de identificación usa el número ONU en el transporte?",
+    opts:["Etiqueta verde con números blancos","Placa naranja con números negros","Rombo rojo con número blanco","Etiqueta azul con números negros"],
+    c:1,
+    fb:"Correcto. El número ONU se fija en las unidades de transporte como placas con fondo naranja y números negros, acompañando al rótulo de clase de riesgo."
+  },
+  {
+    q:"Este estándar (EPEF N°3) NO cubre el manejo de:",
+    opts:["Ácidos y sustancias corrosivas","Líquidos inflamables como combustibles","Explosivos y materiales radiactivos","Gases tóxicos y comprimidos"],
+    c:2,
+    fb:"Correcto. El EPEF N°3 excluye expresamente los explosivos y materiales radiactivos, para los cuales existen procedimientos específicos separados."
+  },
+];
+
+let cur=0, score=0, answered=false;
+
+function renderQ() {
+  const q = questions[cur];
+  document.getElementById('prog').style.width = (cur/questions.length*100)+'%';
+  let html = `<div class="q-num">Pregunta ${cur+1} de ${questions.length}</div><div class="q-text">${q.q}</div>`;
+  q.opts.forEach((o,i) => html += `<div class="opt" id="opt${i}" onclick="answer(${i})">${o}</div>`);
+  html += `<div class="feedback" id="fb"></div><button id="next-btn" onclick="nextQ()">${cur===questions.length-1?'Ver resultado':'Siguiente →'}</button>`;
+  document.getElementById('q-body').innerHTML = html;
+  answered = false;
+}
+
+function answer(i) {
+  if(answered) return;
+  answered = true;
+  const q = questions[cur];
+  document.querySelectorAll('.opt').forEach((el,idx) => {
+    el.style.cursor='default';
+    if(idx===q.c) el.classList.add('correct');
+    else if(idx===i&&i!==q.c) el.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb');
+  fb.textContent = q.fb;
+  fb.style.display = 'block';
+  fb.className = 'feedback ' + (i===q.c ? 'ok-f' : 'err-f');
+  if(i===q.c) score++;
+  document.getElementById('next-btn').style.display='inline-block';
+}
+
+function nextQ() {
+  cur++;
+  if(cur>=questions.length) showResult();
+  else renderQ();
+}
+
+function showResult() {
+  document.getElementById('prog').style.width='100%';
+  document.getElementById('quiz-wrap').style.display='none';
+  const sw = document.getElementById('score-wrap');
+  sw.style.display='block';
+  const total = questions.length;
+  const approved = score === total;
+  document.getElementById('score-icon').textContent = approved ? '🏆' : '📖';
+  document.getElementById('score-title').textContent = score+' de '+total+' correctas ('+Math.round(score/total*100)+'%)';
+  if(approved) {
+    document.getElementById('score-sub').textContent = '¡Perfecto! Respondiste todo correcto. Ya puedes obtener tu certificado.';
+    document.getElementById('score-sub').style.color = '#1e7b34';
+    document.getElementById('cert-btn-wrap').style.display = 'block';
+  } else {
+    const wrong = total - score;
+    document.getElementById('score-sub').textContent = 'Tuviste '+wrong+' error'+(wrong>1?'es':'')+'. Necesitas 100% para aprobar. Revisa el material e intenta de nuevo.';
+    document.getElementById('score-sub').style.color = '#c0392b';
+    document.getElementById('cert-btn-wrap').style.display = 'none';
+  }
+}
+
+function showCert() {
+  const nombre = document.getElementById('user-name').value.trim() || 'Participante';
+  const fecha = new Date().toLocaleDateString('es-CL', {day:'2-digit', month:'long', year:'numeric'});
+  document.getElementById('cert-name-display').textContent = nombre;
+  document.getElementById('cert-score').textContent = questions.length+'/'+questions.length;
+  document.getElementById('cert-date').textContent = fecha;
+  document.getElementById('cert-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+
+function closeCert() {
+  document.getElementById('cert-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+function restartQuiz() {
+  cur=0; score=0; answered=false;
+  document.getElementById('quiz-wrap').style.display='block';
+  document.getElementById('score-wrap').style.display='none';
+  renderQ();
+}
+
+function show(id) {
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('show'));
+  document.getElementById('s-'+id).classList.add('show');
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  const idx=['intro','identificacion','controles','personal','quiz'].indexOf(id);
+  document.querySelectorAll('nav.tabs button')[idx].classList.add('active');
+  if(id==='quiz'&&cur===0&&!answered) renderQ();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('cert-overlay').addEventListener('click', function(e){
+  if(e.target===this) closeCert();
+});
+</script>
+</body>
+</html>
